@@ -15,13 +15,13 @@ L’expérience évalue comment le **temps de réponse moyen** évolue selon :
 ## Graphiques de résultats
 
 ### 1. Concurrence
-![Concurrence](out/conc.png)
+![Concurrence](res/conc.png)
 
 ### 2. Taille des posts
-![Posts](out/post.png)
+![Posts](res/post.png)
 
 ### 3. Fanout
-![Fanout](out/fanout.png)
+![Fanout](res/fanout.png)
 
 ## Fichiers CSV
 - [out/conc.csv](out/conc.csv)
