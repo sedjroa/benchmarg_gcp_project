@@ -57,17 +57,22 @@ Installation de apache via un terminale Ubuntu/WSL: **apt install apache2-utils*
 
 Création de 1000 utilisateurs, 50 postes chacun avec 20 followees dans GCP
 ```sh
-python3 seed.py --users 1000 --posts 50 --follows-min 20 --follows-max 20
+python3 seed.py --users 1000 --posts 50000 --follows-min 20 --follows-max 20
 ```
 #### 2. Passage à l'échelle sur charge
-Test Apache pour le nombre de concurrents valant 1, 10, 20, 50, 100, 1000
+Lancer **Locust** (locust.py)
 ```sh
-ab -k -n 1000 -c 1 "https://massive-gcp-475707.ew.r.appspot.com/api/timeline?user=user888" > conc1.txt
-ab -k -n 1000 -c 10 "https://massive-gcp-475707.ew.r.appspot.com/api/timeline?user=user888" > conc10.txt
-ab -k -n 1000 -c 20 "https://massive-gcp-475707.ew.r.appspot.com/api/timeline?user=user888" > conc20.txt
-ab -k -n 1000 -c 50 "https://massive-gcp-475707.ew.r.appspot.com/api/timeline?user=user888" > conc50.txt
-ab -k -n 1000 -c 100 "https://massive-gcp-475707.ew.r.appspot.com/api/timeline?user=user888" > conc100.txt
-ab -k -n 1000 -c 1000 "https://massive-gcp-475707.ew.r.appspot.com/api/timeline?user=user888" > conc1000.txt
+locust -f locust.py --host=https://massive-gcp-475707.ew.r.appspot.com 
+```
+<img width="950" height="474" alt="image" src="https://github.com/user-attachments/assets/a54adf84-8b37-4a83-8ec6-f775aba26196" />
+
+Renseigner: 
+
+```sh
+`Number of users:` Nombre d'utilisateurs concurrents
+`Ramp Up:` Nombre d'utilisateurs se connectant par seconde
+`Host:` Nom d'hôte de l'application
+`Advanced Options (Run Time):` Durée totale de l'expérience
 ```
 ### Passage à l'échelle sur la taille des données avec les postes
 
@@ -78,39 +83,31 @@ On fixe :
 - `posts = 10`
 - `followees = 20`
 ```sh
-python3 seed.py --users 1000 --posts 10 --follows-min 20 --follows-max 20
+python3 seed.py --users 1000 --posts 10000 --follows-min 20 --follows-max 20
 ```
-Dans Apache:
-```sh
-ab -k -n 1000 -c 50 "https://massive-gcp-475707.ew.r.appspot.com/api/timeline?user=user888" > post10.txt
-```
+
 
 - Pour 100 postes
 ```sh
-python3 seed.py --users 1000 --posts 100 --follows-min 20 --follows-max 20
-ab -k -n 1000 -c 50 "https://massive-gcp-475707.ew.r.appspot.com/api/timeline?user=user888" > post100.txt
+python3 seed.py --users 1000 --posts 100000 --follows-min 20 --follows-max 20
 ```
 
 - Pour 1000 postes
 ```sh
-python3 seed.py --users 1000 --posts 100 --follows-min 20 --follows-max 20
-ab -k -n 1000 -c 50 "https://massive-gcp-475707.ew.r.appspot.com/api/timeline?user=user888" > post1000.txt
+python3 seed.py --users 1000 --posts 1000000 --follows-min 20 --follows-max 20
 ```
 ### Passage à l'échelle sur la taille des données followees
 
 - Pour 10 followees
 ```sh
-python3 seed.py --users 1000 --posts 100 --follows-min 10 --follows-max 10
-ab -k -n 1000 -c 50 "https://massive-gcp-475707.ew.r.appspot.com/api/timeline?user=user888" > fanout10.txt
+python3 seed.py --users 1000 --posts 100000 --follows-min 10 --follows-max 10
 ```
 - Pour 50 followees
 ```sh
-python3 seed.py --users 1000 --posts 100 --follows-min 50 --follows-max 50
-ab -k -n 1000 -c 50 "https://massive-gcp-475707.ew.r.appspot.com/api/timeline?user=user888" > fanout50.txt
+python3 seed.py --users 1000 --posts 100000 --follows-min 50 --follows-max 50
 ```
 
 - Pour 100 followees
 ```sh
-python3 seed.py --users 1000 --posts 100 --follows-min 100 --follows-max 100
-ab -k -n 1000 -c 50 "https://massive-gcp-475707.ew.r.appspot.com/api/timeline?user=user888" > fanout100.txt
+python3 seed.py --users 1000 --posts 100000 --follows-min 100 --follows-max 100
 ```
