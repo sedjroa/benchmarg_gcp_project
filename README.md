@@ -6,7 +6,7 @@ Ce dépôt contient les scripts et résultats du benchmark de l'application Tiny
 
 ## Objectif du projet
 
-Ce projet vise à mesurer les performances et la scalabilité de l'application [**TinyInsta**](github.com/momo54/massive-gcp) déployée sur **Google Cloud Platform (GCP)**.  
+Ce projet vise à mesurer les performances et la scalabilité de l'application [**TinyInsta**](https://github.com/momo54/massive-gcp) déployée sur **Google Cloud Platform (GCP)**.  
 L’expérience évalue comment le **temps de réponse moyen** évolue selon :
 1. Le **nombre de clients simultanés** (concurrence)
 2. Le **nombre de posts par utilisateur**
