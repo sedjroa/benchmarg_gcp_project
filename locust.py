@@ -5,7 +5,7 @@ import statistics
 import time
 import random
 
-CSV_FILE = "out/fanout.csv"
+CSV_FILE = "out/post.csv"
 
 # --------------------------
 # INIT CSV (si pas encore créé)
